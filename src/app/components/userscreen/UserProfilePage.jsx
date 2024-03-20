@@ -12,7 +12,7 @@ import FriendListUserScreen from './FriendListUserScreen'
 import { userProfile } from "../../redux/slices/profileSlice";
 import { allPostApi, postDeleteUserScreen } from "../../redux/slices/postsSlice";
 import PageScroller from "../home/PageScroller";
-import UserScreenUploadedFiles from "./userScreenUploadedFiles";
+import UserScreenUploadedFiles from "./UserScreenUploadedFiles";
 
 function UserProfilePage({ params }) {
     const router = useRouter()
