@@ -1,6 +1,9 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-
+import ReduxProvider from "./redux/ReduxProvider";
+import Header from "./components/header/Header";
+import 'react-loading-skeleton/dist/skeleton.css'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -11,7 +14,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <ReduxProvider>
+          <SkeletonTheme baseColor="#b8b5b5" highlightColor="#444">
+            <Header />
+            {children}
+          </SkeletonTheme>
+        </ReduxProvider>
+      </body>
     </html>
   );
 }
