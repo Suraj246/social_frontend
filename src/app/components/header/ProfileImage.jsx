@@ -6,7 +6,8 @@ const ProfileImage = ({ userProfileData, imagePreview }) => {
     return (
         <div className=' w-full h-full'>
             <Image
-                src={imagePreview ? `${imagePreview}` : userProfileData?.data?.image ? `${API}/uploads/${userProfileData?.data?.image} ` : ""}
+                src={imagePreview ? `${imagePreview}` : `${API}/uploads/${userProfileData?.data?.image} `}
+                // src={imagePreview ? `${imagePreview}` : userProfileData?.data?.image ? `${API}/uploads/${userProfileData?.data?.image} ` : ""}
                 alt="Profile Preview"
                 className="w-full h-full rounded-full object-cover"
                 width={500} height={500}
