@@ -65,17 +65,17 @@ function UserProfilePage({ params }) {
             <div className="bg-white  rounded-lg p-8 ">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4">
-                        {
-                            userProfileScreenData?.image ?
-                                <Image
-                                    src={userProfileScreenData?.image ? `${API}/uploads/${userProfileScreenData?.image}` : ""}
-                                    alt="Profile"
-                                    className="w-32 h-32 rounded-full mr-6 object-cover"
-                                    width={400} height={400}
-                                />
-                                :
-                                <Skeleton width={110} height={110} style={{ borderRadius: "50px" }} />
-                        }
+
+
+                        <Image
+                            src={userProfileScreenData?.image ? `${API}/uploads/${userProfileScreenData?.image}` : <Skeleton width={110} height={110} style={{ borderRadius: "50px" }} />}
+                            alt="Profile"
+                            className="w-32 h-32 rounded-full mr-6 object-cover"
+                            width={400} height={400}
+                        />
+
+
+
                         <div>
                             <h1 className="text-gray-600 text-2xl font-semibold mb-2">{userProfileScreenData?.username || <Skeleton width={200} height={25} />}</h1>
                             <p className="text-gray-500">{userProfileScreenData?.location || <Skeleton width={200} height={25} />}</p>
