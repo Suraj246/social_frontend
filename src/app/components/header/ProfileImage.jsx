@@ -11,7 +11,7 @@ const ProfileImage = ({ userProfileData, imagePreview }) => {
                 alt="Profile Preview"
                 className="w-full h-full rounded-full object-cover"
                 width={500} height={500}
-                style={{ backgroundColor: userProfileData?.data?.image ? "" : "black" }}
+                style={{ backgroundColor: userProfileData?.data?.image ? "black" : "black" }}
             />
         </div>
     )
