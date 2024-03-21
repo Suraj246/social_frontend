@@ -25,6 +25,13 @@ const BlogSection = () => {
     const inputValue = useSelector(selectInputValue)
     const selector = useSelector(state => state.postsData)
     const { postsData, error, status } = selector
+
+    if (postsData?.length >= 0) {
+        var allPosts = [...postsData]
+        var lastPost = allPosts.pop()
+        allPosts.unshift(lastPost)
+    }
+
     useEffect(() => {
         dispatch(allPostApi())
     }, [dispatch])
@@ -65,7 +72,7 @@ const BlogSection = () => {
                     :
                     error ? <span>something went wrong</span> :
                         <>
-                            {postsData?.filter((elem) => {
+                            {allPosts?.filter((elem) => {
                                 if (inputValue === elem?.user?.username) {
                                     return true;
                                 } else if (elem?.user?.username && elem?.user?.username.toLowerCase().includes(inputValue)) {

@@ -13,8 +13,7 @@ const UserSection = () => {
     const dispatch = useDispatch()
     const selector = useSelector(state => state.userProfileData)
     const { userProfileData, status, error } = selector
-    console.log(userProfileData.data)
-    console.log(`${API}/uploads/${userProfileData?.data?.image}`)
+
 
     useEffect(() => {
         dispatch(userProfile())
