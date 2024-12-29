@@ -28,8 +28,8 @@ const UserScreenUploadedFiles = ({ post, handleDelete, user, id, idx }) => {
     }
     return (
         <>
-            <div className="bg-white shadow-md rounded-lg w-2/4  border-2">
-                <div className="p-4">
+            <div className="bg-white shadow-md rounded-lg w-full">
+                <div className="p-2">
                     <div className='flex justify-end p-2'>
                         {
                             user?.userId === id &&
@@ -44,7 +44,7 @@ const UserScreenUploadedFiles = ({ post, handleDelete, user, id, idx }) => {
 
                     </div>
                     {post?.image === "no image" ? '' :
-                        <Image src={post?.image ? `${API}/uploads/${post?.image}` : ""} alt="Post" className="w-full h-full object-cover" loading="lazy" width={700} height={700} />
+                        <Image src={post?.image ? `${API}/uploads/${post?.image}` : ""} alt="Post" className="w-full h-64 object-cover" loading="lazy" width={700} height={700} />
 
                     }
                     <div className="flex items-center space-x-2 mt-4">

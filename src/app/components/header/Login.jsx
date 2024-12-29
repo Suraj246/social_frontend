@@ -4,7 +4,6 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/navigation'
 import { fetchUser } from '../../redux/slices/userSlice'
-import { userProfile } from '../../redux/slices/profileSlice'
 
 const Login = () => {
     const dispatch = useDispatch()
@@ -29,13 +28,13 @@ const Login = () => {
                 router.push('/')
                 setTimeout(() => {
                     window.location.reload()
-                }, 500)
+                }, 1000)
             })
 
     };
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-purple-500 to-indigo-500">
-            <div className="max-w-md w-full px-6 py-8 bg-white shadow-md rounded-md">
+        <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-r from-purple-500 to-indigo-500 p-4 md:p-0" >
+            <div className="w-full md:w-2/6 px-6 py-8 bg-white shadow-md rounded-md">
                 <h1 className="text-2xl font-bold text-indigo-500 mb-6">Welcome Back!</h1>
                 <form className="space-y-4" onSubmit={handleSubmit}>
                     {status === "failed" ? <span className='text-sm text-red-600 capitalize text-center w-full '>user not found</span> : ''}
@@ -81,14 +80,16 @@ const Login = () => {
                         className="w-full py-2 px-4 bg-indigo-500 hover:bg-indigo-600 text-white font-medium rounded-md transition duration-300">
                         Login
                     </button>
-                    {/* } */}
-                    <p className="text-gray-600 text-center text-sm">
+                </form>
+                <div className='grid'>
+                    <Link href="/forgotPassword" className='capitalize p-2 w-fit cursor-pointer'>forgot password</Link>
+                    <span className="text-gray-600 text-center text-sm">
                         Don't have an account?{" "}
                         <Link href="/signup" className="text-indigo-500 hover:text-indigo-600">
                             Sign up
                         </Link>
-                    </p>
-                </form>
+                    </span>
+                </div>
             </div>
         </div>
     )

@@ -8,8 +8,8 @@ const Ske_User = () => {
                 <Skeleton width={50} height={50} style={{ borderRadius: "50px" }} />
             </div>
             <div className=" w-full flex flex-col items-start">
-                <Skeleton width={80} height={12} />
-                <Skeleton width={140} height={12} />
+                <Skeleton width={100} height={12} />
+                <Skeleton width={180} height={12} />
                 <Skeleton width={120} height={12} />
                 <Skeleton width={100} height={12} />
                 <Skeleton width={130} height={12} />

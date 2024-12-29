@@ -84,6 +84,7 @@ const Profile = () => {
     useEffect(() => {
         if (!localStorage.getItem("user")) {
             router.push("/login")
+            window.location.reload()
         }
         return
     }, [router])
@@ -91,6 +92,9 @@ const Profile = () => {
     const Logout = () => {
         dispatch(logout())
         router.push("/login")
+        setTimeout(() => {
+            window.location.reload()
+        }, 300)
     }
 
     return (
@@ -101,7 +105,7 @@ const Profile = () => {
                 <form onSubmit={handleSubmit}>
                     <div className="flex flex-col items-center mb-6">
                         <label htmlFor="image" className="relative cursor-pointer">
-                            <div className="w-40 h-40  bg-gray-200 rounded-full mb-4">
+                            <div className="w-24 h-24  bg-gray-200 rounded-full mb-4">
                                 <ProfileImage userProfileData={userProfileData} imagePreview={imagePreview} />
                             </div>
                             <input

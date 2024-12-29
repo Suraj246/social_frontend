@@ -14,6 +14,18 @@ export const signUpUser = createAsyncThunk("userData/signUpUser", async ({ usern
     return data
 })
 
+export const validUserEmail = createAsyncThunk("userData/validUserEmail", async (email) => {
+    const { data } = await axios.post(`${API}/user/email_validation`, email)
+    localStorage.setItem("reset_password_email_id", data.userid)
+    return data
+})
+
+export const resetUserPassword = createAsyncThunk("userData/resetUserPassword", async (newPassword) => {
+    const get_email_id = localStorage.getItem("reset_password_email_id")
+
+    const { data } = await axios.put(`${API}/user/reset_password/${get_email_id}`, { newPassword: newPassword })
+    return data
+})
 
 export const fetchUser = createAsyncThunk("userData/fetchUser", async ({ username, password }) => {
     const { data } = await axios.post(`${API}/user/login`, { username: username, password: password })
@@ -71,6 +83,38 @@ export const userSlice = createSlice({
                 state.error = ''
             })
             .addCase(fetchUser.rejected, (state, action) => {
+                state.status = 'failed'
+                state.userData = {}
+                state.error = action.error.message || 'something went wrong'
+            })
+
+            .addCase(validUserEmail.pending, (state) => {
+                state.status = 'loading'
+            })
+            .addCase(validUserEmail.fulfilled, (state, action) => {
+                state.status = 'success'
+                state.userData = action.payload
+                state.error = ''
+            })
+
+            .addCase(validUserEmail.rejected, (state, action) => {
+                state.status = 'failed'
+                state.userData = {}
+                state.error = action.error.message || 'something went wrong'
+            })
+
+
+
+            .addCase(resetUserPassword.pending, (state) => {
+                state.status = 'loading'
+            })
+            .addCase(resetUserPassword.fulfilled, (state, action) => {
+                state.status = 'success'
+                state.userData = action.payload
+                state.error = ''
+            })
+
+            .addCase(resetUserPassword.rejected, (state, action) => {
                 state.status = 'failed'
                 state.userData = {}
                 state.error = action.error.message || 'something went wrong'

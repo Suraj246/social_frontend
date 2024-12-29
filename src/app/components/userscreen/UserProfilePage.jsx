@@ -29,11 +29,10 @@ function UserProfilePage({ params }) {
     const s = useSelector(state => state.userProfileData)
 
     const getFriendsIds = s?.userProfileData?.data?.friends.map((item) => item._id)
-    console.log(getFriendsIds)
-    console.log(getFriendsIds?.includes(id))
+
     const allPosts = useSelector(state => state.postsData)
     const { postsData } = allPosts
-    const userProfileScreenPosts = postsData.filter((item) => item.user._id === id)
+    const userProfileScreenPosts = postsData.filter((item) => item.user?._id === id)
 
     useEffect(() => {
         dispatch(allPostApi())
@@ -62,19 +61,21 @@ function UserProfilePage({ params }) {
 
     return (
         <div className="container shadow-md mx-auto py-8 px-6 sm:px-8 md:px-10 lg:px-12 xl:px-16">
-            <div className="bg-white  rounded-lg p-8 ">
+            <div className="bg-white  rounded-lg">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4">
 
-
-                        <Image
-                            src={userProfileScreenData?.image ? `${API}/uploads/${userProfileScreenData?.image}` : <Skeleton width={110} height={110} style={{ borderRadius: "50px" }} />}
-                            alt="Profile"
-                            className="w-32 h-32 rounded-full mr-6 object-cover"
-                            width={400} height={400}
-                        />
+                        <div> {
+                            userProfileScreenData?.image ?
 
 
+                                (<Image src={`${API}/uploads/${userProfileScreenData?.image}`}
+                                    alt="Profile" className="w-24 h-24 rounded-full mr-6 object-cover" width={400} height={400} />)
+                                :
+                                (<Skeleton width={110} height={110} style={{ borderRadius: "50px" }} />)
+
+                        }
+                        </div>
 
                         <div>
                             <h1 className="text-gray-600 text-2xl font-semibold mb-2">{userProfileScreenData?.username || <Skeleton width={200} height={25} />}</h1>
@@ -96,31 +97,11 @@ function UserProfilePage({ params }) {
                     user?.userId === id &&
                     <FriendListUserScreen />
                 }
-                {/* <div className="mt-8">
-                    <h2 className="text-xl font-semibold mb-4">About Me</h2>
-                    <p className="text-gray-600">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-                        consequat risus ligula, vitae gravida purus feugiat eu. Phasellus
-                        molestie dolor id mauris ultricies, a mattis velit consequat.
-                        Nullam quis leo sapien. Nullam aliquam nec diam a commodo.
-                    </p>
-                </div>
-                <div className="mt-8">
-                    <h2 className="text-xl font-semibold mb-4">Interests</h2>
-                    <ul className="flex flex-wrap gap-2 text-gray-600">
-                        <li>#WebDevelopment</li>
-                        <li>#JavaScript</li>
-                        <li>#React</li>
-                        <li>#Photography</li>
-                        <li>#Travel</li>
-                    </ul>
-                </div> */}
-                <div className="mt-5  p-2 flex flex-col">
-                    <h2 className="text-xl font-semibold mb-4 text-gray-600 ">Documents</h2>
-                    <div className="grid grid-cols-1 gap-4 place-items-center">
-                        {/* <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-4 border-2"> */}
+
+                <h2 className="text-xl font-semibold my-4 text-gray-600 "> Posts</h2>
+                <div className=" flex justify-center">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2  ">
                         {status === "loading" ?
-                            // <Skeleton width={400} height={200} />
                             <button
                                 type="submit"
                                 className="w-full flex items-center justify-center py-2 px-4 text-white font-medium rounded-md transition duration-300">
@@ -139,7 +120,7 @@ function UserProfilePage({ params }) {
                                 })}
                     </div>
 
-                    <div className="flex justify-end">
+                    <div className="hidden md:flex justify-end  items-end">
                         <PageScroller />
                     </div>
                 </div>

@@ -10,10 +10,8 @@ const UserSkeleton = ({ cards }) => {
                         <div className="flex justify-between items-center" key={idx}>
                             <div className="flex items-center gap-2 ">
                                 <Skeleton width={30} height={30} style={{ borderRadius: "50px" }} />
-                                <Skeleton width={70} height={12} />
+                                <Skeleton width={200} height={15} />
                             </div>
-                            <Skeleton width={20} height={20} />
-
                         </div>
                     )
                 })

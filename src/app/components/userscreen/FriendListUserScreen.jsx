@@ -28,11 +28,9 @@ const FriendListUserScreen = () => {
 
     return (
         <div className="p-1 mt-8">
-            {/* <div className="friend-container p-1 mt-8"> */}
-            <h2 className="text-xl text-semibold mb-4 text-gray-900">Connections</h2>
+            <h2 className="text-xl text-semibold mb-4 text-gray-900">Followings</h2>
             <ul className="divide-y divide-gray-300">
-
-                {status === "loading" ? <UserSkeleton cards={2} /> : error ? <span className="text-gray-800">{error}</span> :
+                {status === "loading" ? <UserSkeleton cards={1} /> : error ? <span className="text-gray-800">{error}</span> :
                     userFriendList?.data?.friends?.map((friend, idx) => {
                         return (
                             <li key={idx} className="flex justify-between items-center text-gray-900 py-2">

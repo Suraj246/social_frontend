@@ -11,8 +11,6 @@ const store = configureStore({
         userProfileData: userProfileReducer,
         postsData: postReducer,
         userProfileScreen: userProfileScreenReducer
-
-
     },
 })
 

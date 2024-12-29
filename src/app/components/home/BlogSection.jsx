@@ -26,11 +26,9 @@ const BlogSection = () => {
     const selector = useSelector(state => state.postsData)
     const { postsData, error, status } = selector
 
-    if (postsData?.length >= 0) {
-        var allPosts = [...postsData]
-        var lastPost = allPosts.pop()
-        allPosts.unshift(lastPost)
-    }
+
+    // adding new posts on top using sort method on date
+    const sortedPosts = [...postsData].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
     useEffect(() => {
         dispatch(allPostApi())
@@ -41,7 +39,6 @@ const BlogSection = () => {
 
     useEffect(() => {
         if (!localStorage.getItem("user")) {
-            // if (user.token === '') {
             router.push("/login")
         }
     }, [user, router])
@@ -59,6 +56,7 @@ const BlogSection = () => {
             <div className=" bg-white shadow-md rounded-lg overflow-hidden">
                 <CreatePostForm />
             </div>
+
             {
                 status === "loading" ?
                     <button
@@ -72,7 +70,7 @@ const BlogSection = () => {
                     :
                     error ? <span>something went wrong</span> :
                         <>
-                            {allPosts?.filter((elem) => {
+                            {sortedPosts?.filter((elem) => {
                                 if (inputValue === elem?.user?.username) {
                                     return true;
                                 } else if (elem?.user?.username && elem?.user?.username.toLowerCase().includes(inputValue)) {
@@ -88,7 +86,7 @@ const BlogSection = () => {
 
                                         <div className="bg-white shadow-md rounded-lg overflow-hidden" key={idx}>
                                             <Link href={`/userpersonalscreen/${post?.user?._id}`} className="flex items-center p-4">
-                                                <Image src={post?.user?.image ? `${API}/uploads/${post?.user?.image}` : ""} alt="User" width={100} height={100} className="w-8 h-8 rounded-full" loading="lazy" />
+                                                <Image src={post?.user?.image ? `${API}/uploads/${post?.user?.image}` : ""} alt="User" width={100} height={100} className="w-8 h-8 object-cover rounded-full" loading="lazy" />
                                                 <div className="flex justify-between items-center w-full ml-2">
                                                     <span className="text-gray-800 font-semibold">{post?.user?.username}</span>
                                                     <span className="text-gray-500 text-sm">{post?.user?.createdAt.slice(0, 10)}</span>

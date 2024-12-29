@@ -27,7 +27,7 @@ const FriendsList = () => {
 
     return (
         <div className="friend-container p-1 mt-3 ">
-            <h2 className="text-sm text-semibold mb-4 text-gray-900">Connections</h2>
+            <h2 className="text-sm text-semibold mb-4 text-gray-900">Followings</h2>
             <ul className="divide-y divide-gray-300">
 
                 {status === "loading" ? <UserSkeleton cards={2} /> : error ? <span className="text-gray-800">{error}</span> :

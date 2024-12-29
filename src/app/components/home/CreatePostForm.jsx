@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { allPostApi, createPostApi, storePostIdApi } from '../../redux/slices/postsSlice'
 

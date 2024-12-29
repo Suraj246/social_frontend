@@ -15,6 +15,5 @@ const ProfileImage = ({ userProfileData, imagePreview }) => {
         </div>
     )
 }
-// src={imagePreview ? `${imagePreview}` : userProfileData?.data?.image ? `${API}/uploads/${userProfileData?.data?.image} ` : ""}
 
 export default ProfileImage
