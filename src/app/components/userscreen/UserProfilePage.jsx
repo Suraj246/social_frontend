@@ -17,14 +17,15 @@ import UserScreenUploadedFiles from "./UserScreenUploadedFiles";
 function UserProfilePage({ params }) {
     const router = useRouter()
 
-    const id = params?.id
-
+    const parsedValue = JSON.parse(params.value)
+    const id = parsedValue.id
     const dispatch = useDispatch()
     const user = Cookies.get('user') ? JSON.parse(Cookies.get('user')) : {}
 
     const selector = useSelector(state => state.userProfileScreen)
-    const { userProfileScreenData, status, error } = selector
 
+    const { userProfileScreenData, status, error } = selector
+    console.log(userProfileScreenData)
 
     const s = useSelector(state => state.userProfileData)
 
@@ -72,7 +73,8 @@ function UserProfilePage({ params }) {
                                 (<Image src={`${API}/uploads/${userProfileScreenData?.image}`}
                                     alt="Profile" className="w-24 h-24 rounded-full mr-6 object-cover" width={400} height={400} />)
                                 :
-                                (<Skeleton width={110} height={110} style={{ borderRadius: "50px" }} />)
+                                // (<Skeleton width={110} height={110} style={{ borderRadius: "50px" }} />)
+                                <span>error{error}</span>
 
                         }
                         </div>

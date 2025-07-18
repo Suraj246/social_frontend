@@ -44,6 +44,7 @@ const BlogSection = () => {
     }, [user, router])
 
     const sendCommentPost = () => {
+        if (!comment) return
         dispatch(createCommentPostApi(comment))
             .then((res) => {
                 dispatch(commentPostApi({ commentId: res.payload.newComment._id, postId }))
