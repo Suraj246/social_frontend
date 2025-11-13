@@ -20,7 +20,7 @@ const LikeButton = ({ post }) => {
     }
 
     return (
-        <button className="flex items-center gap-2 text-white py-1 px-2 rounded-full text-sm font-medium "
+        <button className="flex items-center gap-2 text-white py-1 px-2 rounded-full text-sm font-medium cursor-pointer bg-gray-200"
             onClick={() => {
                 like(post?._id)
             }

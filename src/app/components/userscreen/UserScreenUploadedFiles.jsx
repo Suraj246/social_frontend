@@ -64,7 +64,7 @@ const UserScreenUploadedFiles = ({ post, handleDelete, user, id, idx }) => {
                                 />
                                 <button
                                     onClick={sendCommentPost}
-                                    type="submit" className="bg-indigo-500 text-white py-2 px-2 rounded-md text-xs font-medium hover:bg-indigo-600 transition duration-300">
+                                    type="submit" className="cursor-pointer bg-indigo-500 text-white py-2 px-2 rounded-md text-xs font-medium hover:bg-indigo-600 transition duration-300">
                                     Submit
                                 </button>
                             </div>

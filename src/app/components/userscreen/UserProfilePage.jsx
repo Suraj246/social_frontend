@@ -101,8 +101,8 @@ function UserProfilePage({ params }) {
                 }
 
                 <h2 className="text-xl font-semibold my-4 text-gray-600 "> Posts</h2>
-                <div className=" flex justify-center">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2  ">
+                <div className=" flex ">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2 w-full">
                         {status === "loading" ?
                             <button
                                 type="submit"
@@ -122,7 +122,7 @@ function UserProfilePage({ params }) {
                                 })}
                     </div>
 
-                    <div className="hidden md:flex justify-end  items-end">
+                    <div className="hidden md:flex justify-end items-end">
                         <PageScroller />
                     </div>
                 </div>
